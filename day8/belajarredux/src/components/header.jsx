@@ -13,21 +13,26 @@ import {
   DropdownItem,
 
 } from 'reactstrap';
-
-import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {connect,useSelector} from 'react-redux'
 
 const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const Bayarparkir=useSelector(({BayarParkir})=>BayarParkir)
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Nav>
+          <NavItem className='mr-2'>{props.Hitungkata.jumlahkata} word</NavItem>
+          <NavItem><Link to='/hitungkata'>Hitungkata</Link></NavItem>
+          <NavItem className='ml-2'>Rp.{Bayarparkir},00</NavItem>
+        </Nav>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/components/">Components</NavLink>
             </NavItem>
@@ -40,7 +45,7 @@ const Header = (props) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
+                  Option 
                 </DropdownItem>
                 <DropdownItem>
                   Option 2
@@ -57,9 +62,11 @@ const Header = (props) => {
     </div>
   );
 }
-const MapStateToProps=(state)=>{
+const MapStateToProps=({bebas,hitungkata,BayarParkir})=>{
     return{
-        Angka:state.bebas
+        Angka:bebas,
+        Hitungkata:hitungkata,
+        BayarParkir:BayarParkir
     }
   }
 export default connect(MapStateToProps)(Header);

@@ -8,7 +8,7 @@ export const Tambahactions=()=>{
 
 export const Kurangactions=()=>{
     return{
-        type:'KURANG'
+        type:KURANG
     }
 }
 export const ResetActions=()=>{
